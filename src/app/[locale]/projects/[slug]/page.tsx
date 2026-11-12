@@ -16,7 +16,14 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   const { locale, slug } = await params;
   const project = await getProject(slug, locale as Locale);
   if (!project) return {};
-  return { title: `${project.meta.title} — XVIIn`, description: project.meta.tagline };
+  return {
+    title: { absolute: `${project.meta.title} — XVIIn` },
+    description: project.meta.tagline,
+    alternates: {
+      canonical: `${locale === "en" ? "" : `/${locale}`}/projects/${slug}`,
+      languages: { en: `/projects/${slug}`, tr: `/tr/projects/${slug}` },
+    },
+  };
 }
 
 export default async function ProjectPage({ params }: { params: Params }) {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
 import { useTranslations } from "next-intl";
 
 export const INTRO_KEY = "xviin:intro-seen";
@@ -14,6 +14,8 @@ function readSeen(): boolean {
     return false;
   }
 }
+
+const noopSubscribe = () => () => {};
 
 function markSeen() {
   try {
@@ -30,21 +32,20 @@ function markSeen() {
  */
 export function IntroGate() {
   const t = useTranslations("intro");
-  const [state, setState] = useState<"hidden" | "shown" | "leaving">("hidden");
-
-  useEffect(() => {
-    if (!readSeen()) setState("shown");
-  }, []);
+  // Server snapshot = "seen", so nothing renders on the server or for no-JS visitors.
+  const seen = useSyncExternalStore(noopSubscribe, readSeen, () => true);
+  const [phase, setPhase] = useState<"idle" | "leaving" | "done">("idle");
+  const state = phase === "done" ? "hidden" : phase === "leaving" ? "leaving" : seen ? "hidden" : "shown";
 
   const dismiss = useCallback(() => {
     markSeen();
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce) {
-      setState("hidden");
+      setPhase("done");
       return;
     }
-    setState("leaving");
-    window.setTimeout(() => setState("hidden"), FADE_MS);
+    setPhase("leaving");
+    window.setTimeout(() => setPhase("done"), FADE_MS);
   }, []);
 
   useEffect(() => {

@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# XVIIn.dev
 
-## Getting Started
+Personal site of XVIIn — apps and tools built with AI.
 
-First, run the development server:
+## Run locally
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Add a project
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Create a folder `content/projects/<slug>/` (lowercase, dashes: `my-app`).
+2. Add `en.mdx` (required) and optionally `tr.mdx`:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```mdx
+---
+title: My App
+tagline: One sentence about it.
+kind: iOS app
+year: 2026
+status: live        # live | soon | wip
+order: 3            # position on the home page
+links:
+  - label: App Store
+    url: https://apps.apple.com/...
+---
 
-## Learn More
+The story of the project, in Markdown.
+```
 
-To learn more about Next.js, take a look at the following resources:
+The project appears on the home page and gets its own page at `/projects/<slug>` (and `/tr/projects/<slug>`). Without `tr.mdx` the Turkish page shows English with a note.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+To give a project its own interactive scene, add a component under `src/components/projects/scenes/` and register it in `src/components/projects/scenes.ts`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Links
 
-## Deploy on Vercel
+Edit `src/content/site.ts` (GitHub, LinkedIn, X, email). Texts for both languages live in `messages/en.json` and `messages/tr.json`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Tests
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm test           # unit tests (vitest)
+npm run e2e        # browser tests (playwright)
+```

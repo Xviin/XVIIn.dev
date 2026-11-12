@@ -5,11 +5,21 @@ import { setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import { SITE_URL } from "@/content/config";
 
-export const metadata: Metadata = {
-  title: "XVIIn",
-  description: "XVIIn — apps and tools built with AI.",
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  return {
+    metadataBase: new URL(SITE_URL),
+    title: { default: "XVIIn", template: "%s — XVIIn" },
+    description: "XVIIn — apps and tools built with AI.",
+    alternates: {
+      canonical: locale === "en" ? "/" : `/${locale}`,
+      languages: { en: "/", tr: "/tr" },
+    },
+    openGraph: { siteName: "XVIIn", type: "website", locale },
+  };
+}
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
