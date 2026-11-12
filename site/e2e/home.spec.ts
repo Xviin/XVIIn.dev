@@ -16,11 +16,11 @@ test("project card links to its page (en and tr)", async ({ page }) => {
   await expect(page.getByRole("link", { name: /Claff/ })).toHaveAttribute("href", "/tr/projects/claff");
 });
 
-test("footer has GitHub and LinkedIn", async ({ page }) => {
+test("footer has GitHub and Email", async ({ page }) => {
   await page.goto("/");
   const footer = page.getByRole("contentinfo");
   await expect(footer.getByText("GitHub")).toBeVisible();
-  await expect(footer.getByText("LinkedIn")).toBeVisible();
+  await expect(footer.getByText("Email")).toBeVisible();
 });
 
 test("no horizontal scroll at 375px", async ({ page }) => {
