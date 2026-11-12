@@ -1,4 +1,7 @@
 import { test, expect } from "@playwright/test";
+import { skipIntro } from "./helpers";
+
+test.beforeEach(async ({ page }) => skipIntro(page));
 
 test("english is default at /", async ({ page }) => {
   await page.goto("/");
