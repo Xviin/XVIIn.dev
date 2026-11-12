@@ -38,3 +38,14 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Intro gate: overlay is server-rendered but only displayed while <html> has .intro-pending */
+[data-intro-gate] {
+  display: none;
+}
+html.intro-pending [data-intro-gate] {
+  display: flex;
+}
+html.intro-pending body {
+  overflow: hidden;
+}

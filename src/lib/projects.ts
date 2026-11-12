@@ -23,6 +23,7 @@ const DEFAULT_DIR = path.join(process.cwd(), "content/projects");
 const REQUIRED = ["title", "tagline", "kind", "year", "status", "order"] as const;
 const STATUSES: ProjectStatus[] = ["live", "soon", "wip"];
 const SLUG_RE = /^[a-z0-9][a-z0-9-]*$/;
+const LOCALES: readonly string[] = ["en", "tr"];
 
 async function exists(file: string): Promise<boolean> {
   try {
@@ -34,7 +35,7 @@ async function exists(file: string): Promise<boolean> {
 }
 
 async function readProject(slug: string, locale: Locale, dir: string) {
-  if (!SLUG_RE.test(slug)) return null;
+  if (!SLUG_RE.test(slug) || !LOCALES.includes(locale)) return null;
   let file = path.join(dir, slug, `${locale}.mdx`);
   let usedLocale: Locale = locale;
   if (!(await exists(file))) {

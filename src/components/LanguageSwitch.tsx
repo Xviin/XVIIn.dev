@@ -6,11 +6,10 @@ import { useLocale, useTranslations } from "next-intl";
 
 /** Path for the same page in the other locale. English has no prefix, Turkish lives under /tr. */
 export function otherLocaleHref(pathname: string, current: string): string {
-  if (current === "tr") {
-    const stripped = pathname.replace(/^\/tr(?=\/|$)/, "");
-    return stripped === "" ? "/" : stripped;
-  }
-  return pathname === "/" ? "/tr" : `/tr${pathname}`;
+  // During prerender the pathname includes the internal locale segment (/en/...), so strip either prefix.
+  const bare = pathname.replace(/^\/(en|tr)(?=\/|$)/, "") || "/";
+  if (current === "tr") return bare;
+  return bare === "/" ? "/tr" : `/tr${bare}`;
 }
 
 export function LanguageSwitch() {

@@ -6,9 +6,11 @@ import { routing } from "@/i18n/routing";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SITE_URL } from "@/content/config";
+import { introBootScript } from "@/components/intro/IntroGate";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
+  if (!hasLocale(routing.locales, locale)) return {};
   return {
     metadataBase: new URL(SITE_URL),
     title: { default: "XVIIn", template: "%s — XVIIn" },
@@ -37,7 +39,10 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
 
   return (
-    <html lang={locale} className="h-full antialiased">
+    <html lang={locale} className="h-full antialiased" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: introBootScript }} />
+      </head>
       <body className="min-h-full flex flex-col">
         <NextIntlClientProvider>
           <SiteHeader />

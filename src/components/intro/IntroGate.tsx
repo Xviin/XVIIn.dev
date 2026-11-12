@@ -4,20 +4,22 @@ import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
 import { useTranslations } from "next-intl";
 
 export const INTRO_KEY = "xviin:intro-seen";
+const PENDING_CLASS = "intro-pending";
 const AUTO_DISMISS_MS = 6000;
 const FADE_MS = 500;
 
-function readSeen(): boolean {
-  try {
-    return sessionStorage.getItem(INTRO_KEY) === "1";
-  } catch {
-    return false;
-  }
-}
+/**
+ * Runs in <head> before first paint. Only a hard load of the home page by a visitor
+ * who has not seen the intro this session gets the `intro-pending` class; CSS shows
+ * the server-rendered overlay only under that class, so there is no content flash,
+ * no-JS visitors see the site, and client navigation never pops the intro.
+ */
+export const introBootScript = `(function(){try{var p=location.pathname.replace(/\\/$/,"")||"/";if((p==="/"||p==="/tr")&&sessionStorage.getItem("${INTRO_KEY}")!=="1"){document.documentElement.classList.add("${PENDING_CLASS}")}}catch(e){}})();`;
 
 const noopSubscribe = () => () => {};
+const readPending = () => document.documentElement.classList.contains(PENDING_CLASS);
 
-function markSeen() {
+function finish() {
   try {
     sessionStorage.setItem(INTRO_KEY, "1");
   } catch {
@@ -25,53 +27,50 @@ function markSeen() {
   }
 }
 
-/**
- * Full-screen intro shown once per session. Placeholder visuals — the real intro
- * replaces the inner content later; dismissal behaviour stays the same.
- * Mounted client-side only, so no-JS visitors and crawlers see the site directly.
- */
+/** Full-screen intro. Placeholder visuals — the real intro replaces the inner content later. */
 export function IntroGate() {
   const t = useTranslations("intro");
-  // Server snapshot = "seen", so nothing renders on the server or for no-JS visitors.
-  const seen = useSyncExternalStore(noopSubscribe, readSeen, () => true);
+  // Server snapshot = pending, so the overlay markup is in the HTML (hidden by CSS unless pending).
+  const pending = useSyncExternalStore(noopSubscribe, readPending, () => true);
   const [phase, setPhase] = useState<"idle" | "leaving" | "done">("idle");
-  const state = phase === "done" ? "hidden" : phase === "leaving" ? "leaving" : seen ? "hidden" : "shown";
 
   const dismiss = useCallback(() => {
-    markSeen();
+    finish();
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) {
+    const end = () => {
+      document.documentElement.classList.remove(PENDING_CLASS);
       setPhase("done");
-      return;
-    }
+    };
+    if (reduce) return end();
     setPhase("leaving");
-    window.setTimeout(() => setPhase("done"), FADE_MS);
+    window.setTimeout(end, FADE_MS);
   }, []);
 
+  const active = pending && phase === "idle";
+
   useEffect(() => {
-    if (state !== "shown") return;
+    if (!active) return;
     const timer = window.setTimeout(dismiss, AUTO_DISMISS_MS);
     const onKey = () => dismiss();
     window.addEventListener("keydown", onKey);
-    document.body.style.overflow = "hidden";
     return () => {
       window.clearTimeout(timer);
       window.removeEventListener("keydown", onKey);
-      document.body.style.overflow = "";
     };
-  }, [state, dismiss]);
+  }, [active, dismiss]);
 
-  if (state === "hidden") return null;
+  if (phase === "done" || (!pending && phase === "idle")) return null;
 
   return (
     <div
       data-testid="intro-gate"
+      data-intro-gate=""
       role="button"
       tabIndex={0}
       aria-label={t("hint")}
       onClick={dismiss}
-      className={`fixed inset-0 z-50 flex cursor-pointer items-center justify-center bg-bg px-4 transition-opacity duration-500 ${
-        state === "leaving" ? "pointer-events-none opacity-0" : "opacity-100"
+      className={`fixed inset-0 z-50 cursor-pointer items-center justify-center bg-bg px-4 transition-opacity duration-500 ${
+        phase === "leaving" ? "pointer-events-none opacity-0" : "opacity-100"
       }`}
     >
       <div className="w-full max-w-3xl">
