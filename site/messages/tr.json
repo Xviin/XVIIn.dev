@@ -1,0 +1,10 @@
+{
+  "nav": { "projects": "Projeler", "contact": "İletişim" },
+  "hero": { "tagline": "Yapay zekâ ile uygulamalar ve araçlar geliştiriyorum." },
+  "projects": { "title": "Projeler", "status": { "live": "Yayında", "soon": "Yakında", "wip": "Geliştiriliyor" } },
+  "project": { "back": "Geri", "fallbackNote": "Bu sayfa henüz Türkçe değil — İngilizcesi gösteriliyor." },
+  "contact": { "title": "İletişim" },
+  "lang": { "switch": "EN", "label": "Switch to English" },
+  "intro": { "hint": "tıkla · geç" },
+  "notFound": { "title": "Sayfa bulunamadı", "home": "Ana sayfa" }
+}
