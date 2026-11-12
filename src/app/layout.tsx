@@ -1,15 +1,6 @@
-import type { Metadata } from "next";
 import "./globals.css";
 
-export const metadata: Metadata = {
-  title: "XVIIn",
-  description: "XVIIn — apps and tools built with AI.",
-};
-
+// Root layout is a pass-through; <html> lives in [locale]/layout.tsx.
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en" className="h-full antialiased">
-      <body className="min-h-full flex flex-col">{children}</body>
-    </html>
-  );
+  return children;
 }

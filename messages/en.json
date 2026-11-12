@@ -1,0 +1,10 @@
+{
+  "nav": { "projects": "Projects", "contact": "Contact" },
+  "hero": { "tagline": "I build apps and tools with AI." },
+  "projects": { "title": "Projects", "status": { "live": "Live", "soon": "Coming soon", "wip": "In progress" } },
+  "project": { "back": "Back", "fallbackNote": "This page is not available in this language yet — showing English." },
+  "contact": { "title": "Contact" },
+  "lang": { "switch": "TR", "label": "Türkçe'ye geç" },
+  "intro": { "hint": "click · skip" },
+  "notFound": { "title": "Page not found", "home": "Go home" }
+}

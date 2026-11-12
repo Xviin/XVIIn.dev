@@ -1,0 +1,32 @@
+"use client";
+
+import NextLink from "next/link";
+import { usePathname } from "next/navigation";
+import { useLocale, useTranslations } from "next-intl";
+
+/** Path for the same page in the other locale. English has no prefix, Turkish lives under /tr. */
+export function otherLocaleHref(pathname: string, current: string): string {
+  if (current === "tr") {
+    const stripped = pathname.replace(/^\/tr(?=\/|$)/, "");
+    return stripped === "" ? "/" : stripped;
+  }
+  return pathname === "/" ? "/tr" : `/tr${pathname}`;
+}
+
+export function LanguageSwitch() {
+  const t = useTranslations("lang");
+  const locale = useLocale();
+  const pathname = usePathname() ?? "/";
+
+  return (
+    <NextLink
+      href={otherLocaleHref(pathname, locale)}
+      data-testid="lang-switch"
+      aria-label={t("label")}
+      hrefLang={locale === "en" ? "tr" : "en"}
+      className="font-mono text-xs tracking-widest text-muted hover:text-fg"
+    >
+      {t("switch")}
+    </NextLink>
+  );
+}
