@@ -30,3 +30,16 @@ test("no horizontal scroll at 375px", async ({ page }) => {
   const ok = await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth);
   expect(ok).toBe(true);
 });
+
+test("claff page shows the app icon and screenshots", async ({ page }) => {
+  await page.goto("/projects/claff");
+  const shots = page.getByTestId("claff-shots");
+  await expect(shots.getByRole("img")).toHaveCount(5);
+  await expect(page.getByRole("heading", { level: 2, name: "What it does" })).toBeVisible();
+  await expect(page.getByText("Coming to the App Store")).toBeVisible();
+});
+
+test("claff screenshots have turkish captions on /tr", async ({ page }) => {
+  await page.goto("/tr/projects/claff");
+  await expect(page.getByText("Her ödeme kendi gününde.")).toBeVisible();
+});

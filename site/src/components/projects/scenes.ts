@@ -5,4 +5,6 @@ import type { ComponentType } from "react";
  *   claff: () => import("./scenes/ClaffScene"),
  * The component renders above the project's text on its page.
  */
-export const scenes: Record<string, () => Promise<{ default: ComponentType }>> = {};
+export const scenes: Record<string, () => Promise<{ default: ComponentType }>> = {
+  claff: () => import("./scenes/ClaffScene"),
+};

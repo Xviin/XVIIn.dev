@@ -114,3 +114,26 @@ html.intro-pending body {
     opacity: 1;
   }
 }
+
+/* Project write-ups (MDX body) */
+.prose-xviin h2 {
+  margin-top: 2.5rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--fg);
+}
+.prose-xviin ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+}
+.prose-xviin li + li {
+  margin-top: 0.5rem;
+}
+.prose-xviin li::marker {
+  color: var(--muted);
+}
+.prose-xviin strong {
+  color: var(--fg);
+  font-weight: 600;
+}

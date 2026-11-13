@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { Link } from "@/i18n/navigation";
@@ -13,7 +14,17 @@ export async function ProjectLayout({ meta, body }: { meta: ProjectMeta; body: s
       {meta.isFallback && (
         <p className="mt-6 rounded-lg border border-line px-4 py-3 text-sm text-muted">{t("fallbackNote")}</p>
       )}
-      <div className="mt-10 font-mono text-xs text-muted">
+      {meta.cover && (
+        <Image
+          src={meta.cover}
+          alt=""
+          width={96}
+          height={96}
+          priority
+          className="mt-10 h-20 w-20 rounded-[22%] sm:h-24 sm:w-24"
+        />
+      )}
+      <div className={`${meta.cover ? "mt-6" : "mt-10"} font-mono text-xs text-muted`}>
         {meta.kind} · {meta.year} · {ts(meta.status)}
       </div>
       <h1 className="mt-3 text-5xl font-extrabold tracking-tight sm:text-7xl">{meta.title}</h1>

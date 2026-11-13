@@ -6,5 +6,6 @@
   "contact": { "title": "Contact" },
   "lang": { "switch": "TR", "label": "Türkçe'ye geç" },
   "intro": { "hint": "click · skip" },
+  "claff": {"label": "Claff screenshots", "prev": "Previous", "next": "Next", "shots": {"list": "This month at a glance: what's left, what's paid, what's late.", "calendar": "Every payment on its day.", "paid": "Paid this month.", "widgets": "Home screen widgets.", "widgetCalendar": "The whole month, without opening the app."}},
   "notFound": { "title": "Page not found", "home": "Go home" }
 }

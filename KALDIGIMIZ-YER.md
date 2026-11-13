@@ -48,7 +48,7 @@ Referans: cobanov.dev — yapısı ilham, **aynısı değil**. Hedef: Apple ür�
 ## Sıradaki adımlar
 1. ~~Giriş ekranı~~ — bitti (13 Kasım). GitHub Desktop'tan commit + push edildi mi kontrol et.
 2. **Apple tarzı kaydırma sahneleri** — Ege referans atacak. GSAP + Three.js bu aşamada eklenecek.
-3. **Proje içerikleri** — Claff: Bills & Payments (iOS finans uygulaması, ~18 Kasım 2026 yayın; App Store linki, ekran görüntüleri), Mac ağ/internet bilgisi aracı, şirket panelleri (**gerçek veri YOK**, sahte veriyle tıklanabilir demo). Metinler şu an yer tutucu.
+3. **Proje içerikleri** — Claff sayfası HAZIR (13 Kasım): ikon, 5 ekran görüntüsü (kaydırmalı şerit, `site/src/components/projects/scenes/ClaffScene.tsx`, görseller `site/public/projects/claff/`), EN+TR metin. Ekran görüntülerinde kart son 4 hanesi / abone numaraları / daire no silindi. **App Store'a çıkınca:** `content/projects/claff/en.mdx` + `tr.mdx` → `status: live`, `links:` ile App Store linki ekle, "Coming to the App Store…" cümlesini güncelle. Kalanlar: Mac ağ/internet bilgisi aracı, şirket panelleri (**gerçek veri YOK**, sahte veriyle tıklanabilir demo). Metinler şu an yer tutucu.
 4. **Alan adı** — xviin.dev alınırsa Vercel'e bağla (site URL'si `site/src/content/config.ts`, varsayılan https://xviin.dev).
 5. Ertelenen küçükler: Türkçe yedek sayfalarda lang/canonical, dil değişince #hash kaybı, metadata yerelleştirme, dil düğmesi aria-label, frontmatter link doğrulama, uzun kelime kırma, proje yazısı tipografisi.
 

@@ -6,5 +6,6 @@
   "contact": { "title": "İletişim" },
   "lang": { "switch": "EN", "label": "Switch to English" },
   "intro": { "hint": "tıkla · geç" },
+  "claff": {"label": "Claff ekran görüntüleri", "prev": "Önceki", "next": "Sonraki", "shots": {"list": "Bu ay tek bakışta: ne kaldı, ne ödendi, ne gecikti.", "calendar": "Her ödeme kendi gününde.", "paid": "Bu ay ödenenler.", "widgets": "Ana ekran widget'ları.", "widgetCalendar": "Uygulamayı açmadan bütün ay."}},
   "notFound": { "title": "Sayfa bulunamadı", "home": "Ana sayfa" }
 }
