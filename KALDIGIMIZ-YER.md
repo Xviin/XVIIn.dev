@@ -38,7 +38,7 @@ Referans: cobanov.dev — yapısı ilham, **aynısı değil**. Hedef: Apple ür�
 - Büyük logo ve "Yapay zekâ ile…" yazısı kaldırıldı; sayfa genişledi (en fazla 1800px), Projeler en üstte.
 - Sağda kare **"Şu an" kutusu**: üzerinde çalışılan proje + App Store geri sayımı + "Sırada" + "Son güncelleme" (site yayına alındığı gün).
 - **Kutuyu güncellemek:** `site/src/content/now.ts` → `slug` (şu anki proje), `launch` (çıkış günü, YYYY-AA-GG), `next` (sıradaki). Proje `status: live` olunca kutu "App Store'da yayında" yazar.
-- Claff çıkış günü kutuda 16 Kasım 2026 olarak ayarlı — Ege doğrulasın.
+- Claff çıkış günü kutuda 18 Kasım 2026 (Ege: "18 civarı"; kesinleşince `now.ts`te güncelle).
 
 ## Logo (KARAR VERİLDİ)
 **Ana logo = Rozet, her yerde:** `brand/xviin-rozet.svg` / `.png`

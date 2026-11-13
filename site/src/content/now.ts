@@ -6,6 +6,6 @@
  */
 export const now = {
   slug: "claff",
-  launch: "2026-11-16",
+  launch: "2026-11-18",
   next: "mac-network-tool",
 } as const satisfies { slug: string; launch?: string; next?: string };
