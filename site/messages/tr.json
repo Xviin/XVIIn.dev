@@ -1,11 +1,11 @@
 {
   "nav": { "projects": "Projeler", "contact": "İletişim" },
-  "hero": { "tagline": "Yapay zekâ ile uygulamalar ve araçlar geliştiriyorum." },
   "projects": { "title": "Projeler", "status": { "live": "Yayında", "soon": "Yakında", "wip": "Geliştiriliyor" } },
   "project": { "back": "Geri", "fallbackNote": "Bu sayfa henüz Türkçe değil — İngilizcesi gösteriliyor." },
   "contact": { "title": "İletişim" },
   "lang": { "switch": "EN", "label": "Switch to English" },
   "intro": { "hint": "tıkla · geç" },
   "claff": {"label": "Claff ekran görüntüleri", "prev": "Önceki", "next": "Sonraki", "shots": {"list": "Bu ay tek bakışta: ne kaldı, ne ödendi, ne gecikti.", "calendar": "Her ödeme kendi gününde.", "paid": "Bu ay ödenenler.", "widgets": "Ana ekran widget'ları.", "widgetCalendar": "Uygulamayı açmadan bütün ay."}},
+  "now": {"title": "Şu an", "building": "Üzerinde çalıştığım", "launch": "App Store'a", "days": "gün", "today": "bugün", "tomorrow": "yarın", "launched": "App Store'da yayında", "next": "Sırada", "updated": "Son güncelleme"},
   "notFound": { "title": "Sayfa bulunamadı", "home": "Ana sayfa" }
 }

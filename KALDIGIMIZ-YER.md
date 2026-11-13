@@ -26,13 +26,19 @@ Referans: cobanov.dev — yapısı ilham, **aynısı değil**. Hedef: Apple ür�
 - `Claude outputs/` — logo denemeleri (git dışında)
 
 ## Teknik özet
-- Next.js 16 (App Router, TypeScript), Tailwind 4, next-intl, MDX içerik, Vitest + Playwright testleri (36 e2e + 7 unit, hepsi yeşil).
+- Next.js 16 (App Router, TypeScript), Tailwind 4, next-intl, MDX içerik, Vitest + Playwright testleri (39 e2e + 9 unit, hepsi yeşil).
 - **Dil:** İngilizce ana dil (`/`), Türkçe ikinci dil (`/tr`). Metinler: `site/messages/en.json`, `tr.json`.
 - **Proje eklemek:** `site/content/projects/<slug>/en.mdx` (+ isteğe bağlı `tr.mdx`). Türkçe yoksa İngilizcesi notla gösterilir. Her projenin kendi sayfası var: `/projects/<slug>`.
 - **Projeye özel sahne/demo:** bileşeni yazıp `site/src/components/projects/scenes.ts` içine slug ile kaydet.
 - **Linkler:** `site/src/content/site.ts` — şu an GitHub (github.com/Xviin) ve e-posta (xviin.clu@gmail.com). LinkedIn bilerek kaldırıldı, X yok.
 - **Giriş ekranı (BİTTİ, Ege onayladı):** `site/src/components/intro/IntroGate.tsx` + `IntroLogo.tsx` (+ harf yolları `introLogoPaths.ts`, animasyon CSS'i `globals.css` sonunda `intro-*`). Siyah zemin. Akış (~6,5 sn): rozet dıştan içe GRİ yerleşir (mavi kenar → krem kenar → siyah oval → ince çizgi kendini çizer → X,V,I,I,n tek tek damga gibi → yıldız sol üstten dönerek düşer, iki kez zıplayıp oturur) → renk üst-orta ve alt-ortadan sağa-sola yayılır → yıldızdaki imleç yanıp söner. Oturumda bir kez; tıklama/tuş/9 sn ile kapanır. Taslak: `Claude outputs/xviin-giris-taslak.html`.
 - Ortam notu: Claude'un bulut ortamında npm kapalı olabiliyor; paketler Ege'nin bilgisayarındaki çalışma ortamından iniyor. Mac'te çalıştırmak için: `cd site && npm install && npm run dev` → localhost:3000.
+
+## Ana sayfa (13 Kasım)
+- Büyük logo ve "Yapay zekâ ile…" yazısı kaldırıldı; sayfa genişledi (en fazla 1800px), Projeler en üstte.
+- Sağda kare **"Şu an" kutusu**: üzerinde çalışılan proje + App Store geri sayımı + "Sırada" + "Son güncelleme" (site yayına alındığı gün).
+- **Kutuyu güncellemek:** `site/src/content/now.ts` → `slug` (şu anki proje), `launch` (çıkış günü, YYYY-AA-GG), `next` (sıradaki). Proje `status: live` olunca kutu "App Store'da yayında" yazar.
+- Claff çıkış günü kutuda 16 Kasım 2026 olarak ayarlı — Ege doğrulasın.
 
 ## Logo (KARAR VERİLDİ)
 **Ana logo = Rozet, her yerde:** `brand/xviin-rozet.svg` / `.png`

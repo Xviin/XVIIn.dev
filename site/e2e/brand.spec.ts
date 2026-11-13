@@ -10,9 +10,11 @@ test("header shows the badge logo linking home", async ({ page }) => {
   await expect(logo).toHaveAttribute("src", /brand-rozet\.svg/);
 });
 
-test("hero shows the big badge", async ({ page }) => {
+test("home opens straight onto the projects", async ({ page }) => {
   await page.goto("/");
-  await expect(page.getByTestId("hero-logo")).toBeVisible();
+  await expect(page.getByTestId("hero-logo")).toHaveCount(0);
+  const box = await page.locator("#projects").boundingBox();
+  expect(box!.y).toBeLessThan(200);
 });
 
 test("favicon, apple icon and og image are declared", async ({ page }) => {

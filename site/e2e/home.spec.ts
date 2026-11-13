@@ -11,9 +11,9 @@ test("home shows projects and contact sections", async ({ page }) => {
 
 test("project card links to its page (en and tr)", async ({ page }) => {
   await page.goto("/");
-  await expect(page.getByRole("link", { name: /Claff/ })).toHaveAttribute("href", "/projects/claff");
+  await expect(page.locator("#projects").getByRole("link", { name: /Claff/ }).last()).toHaveAttribute("href", "/projects/claff");
   await page.goto("/tr");
-  await expect(page.getByRole("link", { name: /Claff/ })).toHaveAttribute("href", "/tr/projects/claff");
+  await expect(page.locator("#projects").getByRole("link", { name: /Claff/ }).last()).toHaveAttribute("href", "/tr/projects/claff");
 });
 
 test("footer has GitHub and Email", async ({ page }) => {
@@ -28,4 +28,12 @@ test("no horizontal scroll at 375px", async ({ page }) => {
   await page.goto("/");
   const ok = await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth);
   expect(ok).toBe(true);
+});
+
+test("now box shows the current project and a live countdown", async ({ page }) => {
+  await page.goto("/");
+  const box = page.getByTestId("now-box");
+  await expect(box).toBeVisible();
+  await expect(box.getByText("Claff")).toBeVisible();
+  await expect(box.getByText("Mac Network Tool")).toBeVisible();
 });
