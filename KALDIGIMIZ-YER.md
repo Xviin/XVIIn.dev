@@ -12,7 +12,7 @@ Ege'nin (XVIIn) kişisel sitesi: projelerini sergileyen, linklerini toplayan ve 
 Referans: cobanov.dev — yapısı ilham, **aynısı değil**. Hedef: Apple ürün sayfaları gibi kaydırdıkça canlanan interaktif sahneler.
 
 ## Şu an yayında
-- **Site:** https://xviin-dev.vercel.app
+- **Site:** https://xviin.dev (eski adres xviin-dev.vercel.app de çalışır). Alan adı Hostinger'da, DNS kayıtları Hostinger panelinde.
 - **GitHub:** https://github.com/Xviin/XVIIn.dev (herkese açık)
 - **Barındırma:** Vercel (ücretsiz). Proje adı `xviin-dev`, **Root Directory = `site`**, `site/vercel.json` → framework nextjs.
 - **Yayına alma:** GitHub Desktop → **Push origin**. Vercel her push'ta otomatik yayınlar.
@@ -55,7 +55,7 @@ Referans: cobanov.dev — yapısı ilham, **aynısı değil**. Hedef: Apple ür�
 1. ~~Giriş ekranı~~ — bitti (13 Kasım). GitHub Desktop'tan commit + push edildi mi kontrol et.
 2. **Apple tarzı kaydırma sahneleri** — Ege referans atacak. GSAP + Three.js bu aşamada eklenecek.
 3. **Proje içerikleri** — Claff sayfası HAZIR (13 Kasım): ikon, 5 ekran görüntüsü (kaydırmalı şerit, `site/src/components/projects/scenes/ClaffScene.tsx`, görseller `site/public/projects/claff/`), EN+TR metin. Ekran görüntülerinde kart son 4 hanesi / abone numaraları / daire no silindi. **App Store'a çıkınca:** `content/projects/claff/en.mdx` + `tr.mdx` → `status: live`, `links:` ile App Store linki ekle, "Coming to the App Store…" cümlesini güncelle. Kalanlar: Mac ağ/internet bilgisi aracı, şirket panelleri (**gerçek veri YOK**, sahte veriyle tıklanabilir demo). Metinler şu an yer tutucu.
-4. **Alan adı** — xviin.dev alınırsa Vercel'e bağla (site URL'si `site/src/content/config.ts`, varsayılan https://xviin.dev).
+4. ~~Alan adı~~ — BİTTİ (13 Kasım): xviin.dev Hostinger'dan alındı, DNS (A @ + CNAME www) Vercel'e bağlandı.
 5. Ertelenen küçükler: Türkçe yedek sayfalarda lang/canonical, dil değişince #hash kaybı, metadata yerelleştirme, dil düğmesi aria-label, frontmatter link doğrulama, uzun kelime kırma, proje yazısı tipografisi.
 
 ## Çalışma şekli (Ege için önemli)
