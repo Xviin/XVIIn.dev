@@ -2,10 +2,12 @@
 
 import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
 import { useTranslations } from "next-intl";
+import { IntroLogo } from "./IntroLogo";
 
 export const INTRO_KEY = "xviin:intro-seen";
 const PENDING_CLASS = "intro-pending";
-const AUTO_DISMISS_MS = 6000;
+/** The animation takes ~6.5s; leave the blinking badge up a moment before moving on. */
+const AUTO_DISMISS_MS = 9000;
 const FADE_MS = 500;
 
 /**
@@ -27,7 +29,7 @@ function finish() {
   }
 }
 
-/** Full-screen intro. Placeholder visuals — the real intro replaces the inner content later. */
+/** Full-screen intro: the badge assembles, takes its colours, then the cursor blinks. */
 export function IntroGate() {
   const t = useTranslations("intro");
   // Server snapshot = pending, so the overlay markup is in the HTML (hidden by CSS unless pending).
@@ -73,13 +75,11 @@ export function IntroGate() {
         phase === "leaving" ? "pointer-events-none opacity-0" : "opacity-100"
       }`}
     >
-      <div className="w-full max-w-3xl">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/brand-rozet.svg" alt="XVIIn" width={760} height={380} className="mx-auto w-full max-w-2xl h-auto" />
+      <div className="w-full">
+        <IntroLogo />
         <span className="sr-only">XVIIn</span>
-        <div className="mt-8 h-px w-full bg-fg/80" />
-        <div className="mt-4 font-mono text-sm text-muted">{t("hint")}</div>
       </div>
+      <div className="absolute inset-x-0 bottom-8 text-center font-mono text-xs text-muted">{t("hint")}</div>
     </div>
   );
 }

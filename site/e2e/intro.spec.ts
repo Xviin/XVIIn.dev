@@ -28,10 +28,17 @@ test("any key dismisses", async ({ page }) => {
   await expect(overlay(page)).toHaveCount(0);
 });
 
-test("auto-dismisses after 6s", async ({ page }) => {
+test("auto-dismisses after 9s", async ({ page }) => {
   await page.goto("/");
   await expect(overlay(page)).toBeVisible();
-  await expect(overlay(page)).toHaveCount(0, { timeout: 7500 });
+  await expect(overlay(page)).toHaveCount(0, { timeout: 10500 });
+});
+
+test("badge animation ends with the cursor blinking", async ({ page }) => {
+  await page.goto("/");
+  const cursor = page.getByTestId("intro-cursor");
+  await expect(cursor).not.toHaveClass(/intro-cursor-on/);
+  await expect(cursor).toHaveClass(/intro-cursor-on/, { timeout: 8500 });
 });
 
 test("turkish hint on /tr", async ({ page }) => {

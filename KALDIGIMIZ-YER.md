@@ -1,6 +1,6 @@
 # XVIIn.dev — Kaldığımız yer
 
-_Son güncelleme: 13 Kasım 2026_
+_Son güncelleme: 13 Kasım 2026 (giriş ekranı eklendi)_
 
 Yeni bir sohbette Claude'a şunu söylemen yeterli:
 **"~/Documents/XVIIn.dev klasöründeki KALDIGIMIZ-YER.md dosyasını oku, oradan devam edelim."**
@@ -26,12 +26,12 @@ Referans: cobanov.dev — yapısı ilham, **aynısı değil**. Hedef: Apple ür�
 - `Claude outputs/` — logo denemeleri (git dışında)
 
 ## Teknik özet
-- Next.js 16 (App Router, TypeScript), Tailwind 4, next-intl, MDX içerik, Vitest + Playwright testleri (35 e2e + 7 unit, hepsi yeşil).
+- Next.js 16 (App Router, TypeScript), Tailwind 4, next-intl, MDX içerik, Vitest + Playwright testleri (36 e2e + 7 unit, hepsi yeşil).
 - **Dil:** İngilizce ana dil (`/`), Türkçe ikinci dil (`/tr`). Metinler: `site/messages/en.json`, `tr.json`.
 - **Proje eklemek:** `site/content/projects/<slug>/en.mdx` (+ isteğe bağlı `tr.mdx`). Türkçe yoksa İngilizcesi notla gösterilir. Her projenin kendi sayfası var: `/projects/<slug>`.
 - **Projeye özel sahne/demo:** bileşeni yazıp `site/src/components/projects/scenes.ts` içine slug ile kaydet.
 - **Linkler:** `site/src/content/site.ts` — şu an GitHub (github.com/Xviin) ve e-posta (xviin.clu@gmail.com). LinkedIn bilerek kaldırıldı, X yok.
-- **Giriş ekranı:** `site/src/components/intro/IntroGate.tsx` — şu an GEÇİCİ: rozet logo + "tıkla · geç". Oturumda bir kez, tıklama/tuş/6 sn ile kapanır, içerik flaşı yok. Asıl tasarım Ege'den gelecek.
+- **Giriş ekranı (BİTTİ, Ege onayladı):** `site/src/components/intro/IntroGate.tsx` + `IntroLogo.tsx` (+ harf yolları `introLogoPaths.ts`, animasyon CSS'i `globals.css` sonunda `intro-*`). Siyah zemin. Akış (~6,5 sn): rozet dıştan içe GRİ yerleşir (mavi kenar → krem kenar → siyah oval → ince çizgi kendini çizer → X,V,I,I,n tek tek damga gibi → yıldız sol üstten dönerek düşer, iki kez zıplayıp oturur) → renk üst-orta ve alt-ortadan sağa-sola yayılır → yıldızdaki imleç yanıp söner. Oturumda bir kez; tıklama/tuş/9 sn ile kapanır. Taslak: `Claude outputs/xviin-giris-taslak.html`.
 - Ortam notu: Claude'un bulut ortamında npm kapalı olabiliyor; paketler Ege'nin bilgisayarındaki çalışma ortamından iniyor. Mac'te çalıştırmak için: `cd site && npm install && npm run dev` → localhost:3000.
 
 ## Logo (KARAR VERİLDİ)
@@ -46,7 +46,7 @@ Referans: cobanov.dev — yapısı ilham, **aynısı değil**. Hedef: Apple ür�
 **Ege'nin zevki (logo/tasarım için):** sokak giyimi (streetwear) estetiği, kalın punto, oval rozet, dört köşeli yıldız, krom/parlama, sticker kenar, piksel/LED dokular. **Sevmedikleri:** neon tabela, düz nokta matris, Matrix/Tron klişeleri (AI popüler kültürü çağrışımı istemiyor), bordo-lacivert geçişli harman.
 
 ## Sıradaki adımlar
-1. **Giriş ekranı** — Ege tarif edecek. Sorulacaklar: ilk 5 saniyede ne oluyor (sahne sahne), 3D yüz fikri hâlâ var mı / kimin yüzü / ne yapıyor, karşılama cümlesi, referans site/video. Rozet logo kullanılacak (ör. piksel piksel belirme, yıldızdaki imlecin yanıp sönmesi).
+1. ~~Giriş ekranı~~ — bitti (13 Kasım). GitHub Desktop'tan commit + push edildi mi kontrol et.
 2. **Apple tarzı kaydırma sahneleri** — Ege referans atacak. GSAP + Three.js bu aşamada eklenecek.
 3. **Proje içerikleri** — Claff: Bills & Payments (iOS finans uygulaması, ~18 Kasım 2026 yayın; App Store linki, ekran görüntüleri), Mac ağ/internet bilgisi aracı, şirket panelleri (**gerçek veri YOK**, sahte veriyle tıklanabilir demo). Metinler şu an yer tutucu.
 4. **Alan adı** — xviin.dev alınırsa Vercel'e bağla (site URL'si `site/src/content/config.ts`, varsayılan https://xviin.dev).
