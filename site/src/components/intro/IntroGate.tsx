@@ -74,9 +74,9 @@ export function IntroGate() {
       }`}
     >
       <div className="w-full max-w-3xl">
-        <div className="text-7xl font-extrabold tracking-tight [text-shadow:0_0_30px_rgba(255,255,255,0.35)] sm:text-9xl">
-          XVIIn
-        </div>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/brand-rozet.svg" alt="XVIIn" width={760} height={380} className="mx-auto w-full max-w-2xl h-auto" />
+        <span className="sr-only">XVIIn</span>
         <div className="mt-8 h-px w-full bg-fg/80" />
         <div className="mt-4 font-mono text-sm text-muted">{t("hint")}</div>
       </div>
